@@ -3,7 +3,11 @@ let points = [[]]
 let options = {
     currentArray: 0,
     funcColors: ['#ff0000'],
+    screenHeight: window.innerHeight,
 }
+
+document.querySelector('.board').width = options.screenHeight - 1
+document.querySelector('.board').height = options.screenHeight - 1
 
 function addPoint() {
     let buffer = prompt('Enter pair of numbers [x,y], example: 15,3')
@@ -43,13 +47,13 @@ function coordinateSystem() {
     ctx.strokeStyle = '#c2c2c2'
     ctx.lineWidth = '1'
     ctx.beginPath()
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < (options.screenHeight/10); i++) {
         ctx.moveTo(i * 10, 0)
-        ctx.lineTo(i * 10, 500)
+        ctx.lineTo(i * 10, options.screenHeight)
     }
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < (options.screenHeight/10); i++) {
         ctx.moveTo(0, i * 10)
-        ctx.lineTo(500, i * 10)
+        ctx.lineTo(options.screenHeight, i * 10)
     }
     ctx.closePath()
     ctx.stroke()
@@ -59,16 +63,16 @@ function coordinateSystem() {
     ctx.strokeStyle = '#3f3f3f'
     ctx.lineWidth = '2'
     ctx.beginPath()
-    ctx.moveTo(0, 250)
-    ctx.lineTo(500, 250)
-    ctx.moveTo(250, 0)
-    ctx.lineTo(250, 500)
+    ctx.moveTo(0, (options.screenHeight/2))
+    ctx.lineTo(options.screenHeight, (options.screenHeight/2))
+    ctx.moveTo((options.screenHeight/2), 0)
+    ctx.lineTo((options.screenHeight/2), options.screenHeight)
     ctx.closePath()
     ctx.stroke()
     ctx.fillStyle = '#000'
     ctx.font = '20px sans-serif'
-    ctx.fillText('X', 480, 270)
-    ctx.fillText('Y', 260, 20)
+    ctx.fillText('X', (options.screenHeight-20), (options.screenHeight/2 + 20))
+    ctx.fillText('Y', (options.screenHeight/2+10), 20)
 }
 coordinateSystem()
 
@@ -78,11 +82,11 @@ function displayPoints(forArray) {
     ctx.lineWidth = '2'
     ctx.beginPath()
     points[forArray].forEach((item, i) => {
-        ctx.lineTo(250 + item.x * 10, 250 - item.y * 10)
-        ctx.moveTo(252 + item.x * 10, 250 - item.y * 10)
-        ctx.arc(250 + item.x * 10, 250 - item.y * 10, 2, 0, 2 * Math.PI)
+        ctx.lineTo((options.screenHeight/2) + item.x * 10, (options.screenHeight/2) - item.y * 10)
+        ctx.moveTo((options.screenHeight/2 + 2) + item.x * 10, (options.screenHeight/2) - item.y * 10)
+        ctx.arc((options.screenHeight/2) + item.x * 10, (options.screenHeight/2) - item.y * 10, 2, 0, 2 * Math.PI)
         ctx.fill()
-        ctx.moveTo(250 + item.x * 10, 250 - item.y * 10)
+        ctx.moveTo((options.screenHeight/2) + item.x * 10, (options.screenHeight/2) - item.y * 10)
     })
     ctx.stroke()
 }

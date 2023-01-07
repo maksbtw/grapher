@@ -23,8 +23,18 @@
         .help {
             position: absolute;
             top: 10px;
+            left: -280px;
+            width: 300px;
+            background: linear-gradient(45deg, #2c0062, #400091);
+            padding: 10px 30px 10px 10px;
+            border-radius: 10px;
+            transition: 1s;
+            cursor: default;
+            color: #fff;
+            font-weight: 700;
+        }
+        .help:hover {
             left: 10px;
-
         }
         .board {
             box-shadow: 0 0 10px #000;
@@ -34,12 +44,12 @@
 <body>
 
     <section class="help">
-        Press [N] to add point <br>
-        Press [B] to start drawing new graph <br>
+        Press [N] to add point <br><br>
+        Press [B] to start drawing new graph <br><br>
         Press [C] to change color of function
     </section>
 
-    <canvas class="board" width="500px" height="500px"></canvas>
+    <canvas class="board"></canvas>
 
 <script src="script.js"></script>
 </body>
